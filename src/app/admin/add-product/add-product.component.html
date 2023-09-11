@@ -1,0 +1,118 @@
+<div class="vh-100">
+  <h3>Add item</h3>
+
+  <form [formGroup]="productForm" enctype="multipart/form-data" (ngSubmit)="onSubmit(productForm)">
+    <div class="form-group">
+      <label for="productTitle">product title</label>
+      <textarea class="form-control" id="productTitle" formControlName="productTitle" rows="3"></textarea>
+      <span class="text-muted" *ngIf="!productForm.controls['productTitle'].valid && 
+              productForm.controls['productTitle']?.touched"> Please enter a product title</span>
+    </div>
+    <div class="btn-group">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender"
+          (click)="changeGender($event)" id="boys" value="boys" [checked]="this.isBoys">
+        <label class="form-check-label" for="boys">Boys apparel</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender"
+          (click)="changeGender($event)" id="girls" value="girls" [checked]="this.isGirls">
+        <label class="form-check-label" for="girls">Girls apparel</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender"
+          (click)="changeGender($event)" id="men" value="men" [checked]="this.isMen">
+        <label class="form-check-label" for="men">Men footwear</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender"
+          (click)="changeGender($event)" id="women" value="women" [checked]="this.isWomen">
+        <label class="form-check-label" for="women">Women footwear</label>
+      </div>
+      <span class="text-muted" *ngIf="!productForm.controls['gender'].valid && 
+              productForm.controls['gender']?.touched"> Please choose a gender</span>
+    </div>
+
+    <div class="form-group">
+      <label for="color">Choose a colour</label>
+      <select class="form-control" id="color" formControlName="colour" (change)="getSelectedValue($event,'colour')">
+        <!-- <option value="">--Choose a color--</option>  -->
+        <option *ngFor="let element of Colours" value="{{element}}">
+          {{ element }}
+        </option>
+      </select>
+      <span class="text-muted" *ngIf="!productForm.controls['colour'].valid && 
+              productForm.controls['colour']?.touched"> Please enter a colour</span>
+    </div>
+    <div class="form-group">
+      <label for="ProductType"> Choose a product Type</label>
+      <select class="form-control" id="ProductType" formControlName="productType"
+        (change)="getSelectedValue($event,'productType')">
+        <!-- <option value="">--Choose a product type--</option>  -->
+        <option *ngFor="let element of ProductType" value="{{element }}">
+          {{ element }}
+        </option>
+      </select>
+      <span class="text-muted" *ngIf="!productForm.controls['productType'].valid && 
+              productForm.controls['productType']?.touched"> Please enter a product type</span>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Product quantity</label>
+      <input class="form-control" id="quantity" formControlName="quantity" type="number">
+      <span class="text-muted" *ngIf="!productForm.controls['quantity'].valid && 
+              productForm.controls['quantity']?.touched"> Please enter a quantity. Quantity must be greater than
+        0.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Product price</label>
+      <input class="form-control" id="price" formControlName="price" type="number">
+      <span class="text-muted" *ngIf="!productForm.controls['price'].valid && 
+              productForm.controls['price']?.touched"> Please enter a price. Price must be greater than 0</span>
+    </div>
+
+    <div class="form-group">
+      <label for="Usage">Usage</label>
+      <select class="form-control" id="Usage" formControlName="usage" (change)="getSelectedValue($event,'usage')">
+        <!-- <option value="">--Choose usage--</option>  -->
+        <option *ngFor="let element of Usage" value="{{element }}">
+          {{ element }}
+        </option>
+      </select>
+      <span class="text-muted" *ngIf="!productForm.controls['usage'].valid && 
+              productForm.controls['usage']?.touched"> Please enter a usage</span>
+    </div>
+
+
+
+
+    <div class="form-group">
+
+      <label for="url">Enter image url an https:// URL:</label>
+
+      <input type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="100"
+        formControlName="imageUrl">
+      <span class="text-muted" *ngIf="!productForm.controls['imageUrl'].valid && 
+              productForm.controls['imageUrl']?.touched"> Please enter a image Url</span>
+
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="image">Choose a product image: </label>
+      <input type='file' (change)="onChange($event)" />
+      <span class="text-muted" *ngIf="!productForm.controls['productImage'].valid && 
+              productForm.controls['productImage']?.touched"> Please choose image</span>
+
+
+    </div>
+    <div>
+      <button type="submit" id="btnSubmit" class="btn btn-primary  btn-submit"
+        [disabled]="productForm.invalid">Submit</button>
+    </div>
+
+
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="row vh-100 mt-3">
+  <div class="col-md-2 col-xl-3"></div>
+  <div class="col-md-8 col-xl-6">
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper" style="height: 80vh; text-align: center;">
+          <img src="assets/imagesFrontend/boy.jpg" width="90%" height="100%" alt="Random first slide" />
+        </div>
+        <div class="carousel-caption">
+          <a class="btn btn-light btn-lg m-2" [routerLink]="['products/','boys']">
+            <h2>Boys apparel</h2>
+          </a>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper" style="height: 80vh;text-align: center">
+          <img src="assets/imagesFrontend/girlN.jpg" width="90%" height="100%" alt="Random second slide" />
+        </div>
+        <div class="carousel-caption">
+          <a class="btn btn-light btn-lg m-2" [routerLink]="['products/','girls']">
+            <h2>Girls apparel</h2>
+          </a>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper" style="height: 80vh; text-align: center;">
+          <img src="assets/imagesFrontend/man.jpg" width="90%" height="100%" alt="Random third slide" />
+        </div>
+        <div class="carousel-caption">
+          <a class="btn btn-light btn-lg m-2" [routerLink]="['products/','men']">
+            <h2>Men footwear</h2>
+          </a>
+
+        </div>
+      </ng-template>
+
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper" style="height: 80vh; text-align: center;">
+          <img src="assets/imagesFrontend/women.jpg" width="90%" height="110%" alt="Random third slide" />
+        </div>
+        <div class="carousel-caption">
+          <a class="btn btn-light btn-lg m-2" [routerLink]="['products/','women']">
+            <h2>Women footwear</h2>
+          </a>
+
+        </div>
+      </ng-template>
+
+    </ngb-carousel>
+  </div>
+  <div class="col-md-2 col-xl-3"></div>
+</div>

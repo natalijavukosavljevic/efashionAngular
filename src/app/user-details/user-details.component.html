@@ -1,0 +1,54 @@
+<section [ngClass]="{'vh-100' : this.empty}">
+  <h2 class="text-center">{{username}}' details</h2>
+  <br>
+  <h3 class="text-center">Previous orders</h3>
+  <br>
+  <hr>
+  <div class="text-end">
+    <button type="button" class="btn btn-info text-white " (click)="logout()">Logout</button>
+  </div>
+
+
+  <h4 *ngIf="empty"> No orders available please order <a [routerLink]="['/cart/']" class="btn btn-outline-info p-2 "
+      tabindex="-1" role="button"><i class="bi bi-truck"></i> Order</a></h4>
+  <div *ngFor="let order of orders" class="row text-center">
+    <h4>Order details</h4>
+    <h6>Date: {{order.date}}</h6>
+    <h6>Address: {{order.address}}</h6>
+    <h6>Phone number: {{order.phoneNumber}}</h6>
+    <h6><span class="price">Total price :<b> {{order.price}} $ </b> </span></h6>
+    <table class="table table-light table-hover text-center table-bordered">
+      <thead>
+        <tr>
+          <th> product title</th>
+          <th> product colour</th>
+          <th> product quantity</th>
+          <th> product price</th>
+          <th> product image</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of order.products">
+          <td>{{product.productTitle}}</td>
+          <td>{{product.colour}}</td>
+          <td>{{product.quantity}}</td>
+          <td><span class="price">{{product.price}} $</span></td>
+          <td><a routerLink="/products/{{product.gender}}/detail/{{product.id}}"><img src="{{product.productImage}}"
+                width="150px" height="150px" class="img-fluid"></a></td>
+
+        </tr>
+      </tbody>
+
+    </table>
+    <hr>
+
+
+
+
+
+
+  </div>
+
+</section>

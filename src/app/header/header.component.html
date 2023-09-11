@@ -1,0 +1,39 @@
+<div class="row">
+
+  <nav class="navbar navbar-expand-lg navbar-dark ">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" [routerLink]="['']"> Home efashion &#x2728;</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a *ngIf="!this.admin" class="nav-link text-white" [routerLink]="['products/','boys']"><i class="bi bi-shop"></i><span>
+                shop products</span></a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="this.admin" class="nav-link text-white" [routerLink]="['products/','boys']"><i class="bi bi-pen"></i><span>
+                edit products</span></a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="!this.admin" class="nav-link text-white" routerLink="cart" id="cart"><i class="bi bi-cart"></i><span
+                id="cart">({{this.totalItem}})</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="user" id="user" *ngIf="this.customer && this.username!='login'"><i
+                class="bi bi-person"></i> <span> {{username}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="login" id="login" *ngIf="this.username=='login'"> <i
+                class="bi bi-person"></i> <span> {{username}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

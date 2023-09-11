@@ -1,0 +1,66 @@
+<section [ngClass]="{'vh-100' : this.empty}">
+
+  <h3 *ngIf="this.isLogged">Previously saved cart</h3>
+  <h3 *ngIf="!this.isLogged">Cart</h3>
+
+  <table class="table table-hover text-center">
+    <thead>
+      <tr>
+        <th> product title</th>
+        <th> product colour</th>
+        <th> price per product</th>
+        <th> product image</th>
+        <th> delete item</th>
+        <th>quantity</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let number of numbers">
+        <td>{{productsList[number].productTitle}}</td>
+        <td>{{productsList[number].colour}}</td>
+        <td>{{productsList[number].price}} $</td>
+        <td><a routerLink="/products/{{productsList[number].gender}}/detail/{{productsList[number].id}}"><img
+              src="{{productsList[number].productImage}}" width="150px" height="150px" class="img-fluid"></a></td>
+        <td> <button class="btn btn-secondary text-white" (click)="removeItem(productsList[number])">X</button></td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" (click)="adding(number)">+</button>
+          <span>{{this.cartNew.quantity[number]}}</span>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="substracting(number)">-</button>
+          <br>
+          <span class="price" *ngIf="productsList[number].quantity<10">Low quantity</span>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div>
+    <h5>Total price: {{totalPrice}} $</h5>
+
+  </div>
+  <div *ngIf="this.productsList.length==0" class="text-center d-flex justify-content-center text-red">
+
+    <h4 class="p-2">Cart is empty <i class="bi bi-emoji-frown"></i></h4>
+    <a [routerLink]="['/products/','boys']" class="btn btn-outline-info p-2 " tabindex="-1" role="button"><i
+        class="bi bi-cart"></i> Shop</a>
+  </div>
+  <div class="row mb-3 mt-3">
+    <div class="col-8">
+      <button *ngIf="!this.empty" class="btn btn-secondary text-white" (click)="emptycart()">Empty cart</button>
+      <button *ngIf="!this.empty" type="button" class="btn btn-primary text-white" (click)="savecart()">Save
+        cart</button>
+
+    </div>
+    <div class="col-4">
+      <button *ngIf="!this.empty" class="btn btn-primary text-white w-100" (click)="order()">Order items from cart <i
+          class="bi bi-truck"></i></button>
+
+    </div>
+
+
+
+
+  </div>
+</section>

@@ -1,0 +1,141 @@
+<section class="vh-200">
+
+  <div class="row">
+
+    <div class="btn-group mb-5 p-0  display-4" role="group" aria-label="Basic example">
+      <input type="radio" class="btn-check" (click)="changeGender($event)" name="genders" id="boys" autocomplete="off">
+      <label class="btn btn-outline-secondary" for="boys"><b>Boys apparel</b></label><br>
+      <input type="radio" class="btn-check" (click)="changeGender($event)" name="genders" id="girls" autocomplete="off">
+      <label class="btn btn-outline-secondary" for="girls"><b>Girls apparel</b></label><br>
+      <input type="radio" class="btn-check" (click)="changeGender($event)" name="genders" id="men" autocomplete="off">
+      <label class="btn btn-outline-secondary" for="men"><b>Men footwear</b></label><br>
+      <input type="radio" class="btn-check" (click)="changeGender($event)" name="genders" id="women" autocomplete="off">
+      <label class="btn btn-outline-secondary" for="women"><b>Women footwear</b></label><br>
+    </div>
+
+  </div>
+
+  <div class="d-flex justify-content-between " *ngIf="admin">
+
+    <a href="#" class="btn btn-primary" role="button" [routerLink]="['addProduct/']">Add Product</a>
+    <a href="#" class="btn btn-info text-white " (click)="logout()" role="button">Log out</a>
+
+
+  </div>
+  <br>
+
+
+
+
+
+  <div class="row px-2 mb-4">
+
+    <div class="col-md-8 col-xl-7 ">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+        <input type="search" id="gsearch" name="gsearch" style="width:70%" formControlName="search"
+          placeholder="search all products {{this.params.gender}}" />
+        <button type="submit" class="btn btn-secondary ml-3"><i class="bi bi-search"></i></button>
+        <!-- <button type="button" (click)="closeSearch()" class="btn btn-danger">
+          Close &#x2715;
+        </button> -->
+      </form>
+    </div>
+
+
+
+  </div>
+
+
+  <div class="row px-4 mb-4">
+    <div class="col-md-6 col-xl-4 ml-5 ">
+      <div class="form-check form-switch w-100">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" style="transform: scale(2);"
+          [checked]="isButtonFilterChecked==true" (change)="changeVisibility($event)">
+        <label class="form-check-label px-3 " for="flexSwitchCheckDefault">Filter</label>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="row mt-3 mb-3" *ngIf="this.isSelectVisible">
+    <h4>Subcategories</h4>
+    <div class="col-md-12 col-xl-10">
+      <input type="radio" class="btn-check" name="options" id="all" autocomplete="off" (change)="changeSub($event)"
+        checked />
+      <label class="btn btn-outline-secondary" for="all">All</label>
+      <div class="btn-group" *ngFor="let subCategory of SubCategory">
+        <input type="radio" class="btn-check" name="options" id="{{ subCategory }}" autocomplete="off"
+          (change)="changeSub($event)" />
+        <label class="btn btn-outline-secondary" for="{{ subCategory }}">{{
+          subCategory
+          }}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="this.isSelectVisible">
+    <div class="col-12 col-md-offset-2">
+      <select id="colour" (change)="getSelectedValue($event, 'colour')">
+        <option value="">--All colors--</option>
+        <option *ngFor="let colour of Colours" value="{{ colour }}">
+          {{ colour }}
+        </option>
+      </select>
+
+      <select id="productType" (change)="getSelectedValue($event, 'productType')">
+        <option value="">--All product types--</option>
+        <option *ngFor="let productType of ProductType" value="{{ productType }}">
+          {{ productType }}
+        </option>
+      </select>
+
+      <select id="usage" (change)="getSelectedValue($event, 'usage')">
+        <option value="">--All usages--</option>
+        <option *ngFor="let usage of Usage" value="{{ usage }}">
+          {{ usage }}
+        </option>
+      </select>
+
+    </div>
+
+
+  </div>
+
+  <div class="row mt-2 mb-3" *ngIf="this.isSelectVisible">
+    <div class="col-8">
+
+      <button type="button" class="btn btn-primary" (click)="filter()">Filter</button>
+      <!-- <button class="btn btn-danger ml-5" (click)="changeVisibility()">Close filters &#x2715; </button> -->
+
+    </div>
+
+  </div>
+
+  <div *ngIf="stickyCart"
+    style="background-color: rgb(225, 225, 224);position: sticky;top:20px; left:200vh; width: 30vh; height: 30vh; opacity: 0.8;"
+    class="text-center">
+    <p><b>You have added item to the cart!</b></p>
+    <br>
+    <img src="/assets/imagesFrontend/shopcart.png" width="50%" height="50%">
+
+  </div>
+
+
+
+  <div class="row text-center vh-100" *ngIf="this.noResults">
+    <h4 id="noResults">No results for selected parameters. Please change selected parameters and press filter again.
+    </h4>
+  </div>
+
+  <div class="row p-0  ">
+
+    <div class="col-md-4 col-xl-3" *ngFor="let item of ProductList">
+      <app-product-item (emiter)="addtoCart($event)" [product]="item" [admin]="this.admin"></app-product-item>
+    </div>
+
+  </div>
+
+  <app-pagination [page]="paramsPag.p" [pageSize]="paramsPag.page_size" [collectionSize]="count"
+    (pageChanged)="onPageChanged($event)"></app-pagination>
+</section>

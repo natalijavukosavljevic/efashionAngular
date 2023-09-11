@@ -1,0 +1,22 @@
+<div class="row">
+
+    <div style="cursor: pointer ;text-align: center;" class="col" (mouseenter)="mouseEnter()"
+        (mouseleave)="mouseLeave()">
+        <a *ngIf="!this.admin"><img src="{{product.productImage}}" width="100%"
+                [routerLink]="['detail/',product.id]"></a>
+        <a *ngIf="this.admin"><img src="{{product.productImage}}" width="100%"></a>
+        <!-- <app-edit-item [product]="product" style="display: none;"></app-edit-item> -->
+        <p>{{product.productTitle}}</p>
+        <p><span class="price"><b>{{product.price}} $</b></span></p>
+        <a *ngIf="this.hoverButton && this.admin" class="btn btn-outline-secondary w-75 "
+            [routerLink]="['edit/',product.id]" role="button">Edit product</a>
+        <!-- <a  *ngIf="this.hoverButton" class="btn btn-outline-secondary w-75" [routerLink]="['cart/',product.id]" role="button">Add to cart</a> -->
+        <button *ngIf="this.hoverButton && !this.admin" [disabled]="product.quantity<=0"
+            class="btn btn-outline-secondary w-75" (click)="add()" role="button"><i
+                class="bi bi-cart-plus"></i></button>
+
+
+
+    </div>
+
+</div>

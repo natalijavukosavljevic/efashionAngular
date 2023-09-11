@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@font-face {
+    font-family: 'MyFont';
+    src: url('../src/assets/ZillaSlab-Medium.ttf');
+  }
+* {
+    font-family: 'MyFont';
+}
+.price{
+    color:rgb(191, 60, 60);
+  }

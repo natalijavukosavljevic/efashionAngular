@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+
+    <button class="btn btn-outline-danger" (click)="onPageChanged(page-1)" [disabled]="page <= 1">&laquo;</button>
+
+    <span>{{page}}/{{pages.length}}</span>
+
+    <!-- <button class="btn" [ngClass]="{'btn-secondary': page==i}" *ngFor="let i of pages"
+        (click)="onPageChanged(i)">{{i}}</button> -->
+    <button class="btn btn-outline-danger" (click)="onPageChanged(page+1)"
+        [disabled]="page * pageSize >= collectionSize">&raquo;</button>
+</div>

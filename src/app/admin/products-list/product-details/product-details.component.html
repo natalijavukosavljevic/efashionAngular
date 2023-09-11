@@ -1,0 +1,108 @@
+<section class="vh-200">
+  <div class="row">
+    <h2 class="text-center">{{ chosenProduct.productTitle }}</h2>
+
+    <div class="col-1"></div>
+
+    <div class="col-lg-7 img-magnifier-container col-md-12">
+      <img [id]="'myImage' + chosenProduct.id" src="{{ chosenProduct.productImage }}" width="100%" height="100%" />
+    </div>
+
+    <div class="col-lg-3 col-md-12 text-center" style="margin-top: 15%">
+      <div class="w-100">
+        <h3>Specifications</h3>
+        <p style="color: red" *ngIf="chosenProduct.quantity <= 0">
+          Chosen product is unavailable
+        </p>
+
+        <p>
+          <ngb-rating [(rate)]="chosenProduct.numberOfStars" [max]="5" [readonly]="true">
+            <ng-template let-fill="fill" let-index="index">
+              <i class="bi-star{{ fill === 100 ? '-fill' : '' }}" [class.filled]="fill === 100"></i>
+            </ng-template>
+          </ngb-rating>
+        </p>
+        <p *ngIf="chosenProduct.numberOfStars <= 0">Product is not rated yet.</p>
+        <p>
+          Product colour: {{ chosenProduct.colour }}. Usage:
+          {{ chosenProduct.usage }}
+        </p>
+        <p id="price">
+          <span class="price"><b>{{ chosenProduct.price }} $ </b></span>
+        </p>
+        <div>
+          <button type="button" class="btn btn-outline-secondary mx-auto" (click)="magnifyOnClick()">
+            <i class="bi bi-search"></i> zoom in
+          </button>
+          <button type="button" class="btn btn-outline-secondary mx-auto" (click)="zoomOut()">
+            <i class="bi bi-search"></i> zoom out
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-success mt-5 mb-3" width="60%" (click)="add()" role="button"
+        [disabled]="chosenProduct.quantity <= 0">
+        Add to cart
+      </button>
+
+      <div>
+        <form *ngIf="reviewFlag" [formGroup]="reviewForm" (ngSubmit)="onSubmit(reviewForm)">
+          <hr />
+          <div>
+            <ngb-rating [(rate)]="currentRate" [max]="5">
+              <ng-template let-fill="fill" let-index="index">
+                <i class="bi-star{{ fill === 100 ? '-fill' : '' }}" [class.filled]="fill === 100"></i>
+              </ng-template>
+            </ngb-rating>
+            <pre>Rate: <b>{{currentRate}}</b></pre>
+          </div>
+
+          <div class="form-group mb-5">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" cols="2"
+              placeholder="enter a comment" formControlName="comment"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mb-5">Submit</button>
+        </form>
+
+        <br />
+      </div>
+
+      <div *ngIf="reviews.length">
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let review of reviews">
+            <h5>{{ review.ownerName }}</h5>
+            <ngb-rating [(rate)]="review.value" [max]="5" [readonly]="true">
+              <ng-template let-fill="fill" let-index="index">
+                <i class="bi-star{{ fill === 100 ? '-fill' : '' }}" [class.filled]="fill === 100"></i>
+              </ng-template>
+            </ngb-rating>
+            <p class="mb-0">
+              {{ review.body }}
+            </p>
+          </ng-template>
+        </ngb-carousel>
+        <br />
+      </div>
+      <div *ngIf="!reviewFlag">
+        <button class="btn btn-primary " width="60%" (click)="review()" role="button">
+          Review
+        </button>
+      </div>
+    </div>
+
+    <div class="col-1"></div>
+  </div>
+  <div class="row mt-5 text-center" *ngIf="this.mostSimiliarProducts.length">
+    <h3>Similiar products</h3>
+    <div class="col-1"></div>
+    <div *ngFor="let mS of this.mostSimiliarProducts" class="col-lg-2 col-md-4 mx-auto" (mouseenter)="mouseEnter()"
+      (mouseleave)="mouseLeave()">
+      <a routerLink="/products/{{ mS.gender }}/detail/{{ mS.id }}"><img src="{{ mS.productImage }}" height="80%"
+          width="100%" /></a>
+      <p *ngIf="hoverButton">
+        <span class="price"><b>{{ mS.price }} $ </b></span>
+      </p>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</section>
