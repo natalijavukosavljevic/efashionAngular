@@ -38,7 +38,7 @@ Registered admin: adding, deleting and editing the products.
 
 ## App pages 
 Home page
-<img src="src/assets/explanatoryImages/homePage.png"> 
+<img src="/src/assets/explanatoryImages/homePage.png"> 
 
 Home page- logged admin
 <img src="src/assets/explanatoryImages/homeAdmin.png"> 
