@@ -80,13 +80,13 @@ non rated product details
 <img src="/src/assets/explanatoryImages/productDetailsNotRated.png"> 
 
 edit products admin
-<img src="/src/assets/explanatoryImages/editProductsAdmin.png"> 
-
-edit and delete product admin- hover on product
 <img src="/src/assets/explanatoryImages/shopNew.png"> 
 
+edit and delete product admin- hover on product
+<img src="/src/assets/explanatoryImages/editItemAdmin.png"> 
+
 add product admin
-<img src="/efashionAngular/src/assets/explanatoryImages/addProductAdmin.png"> 
+<img src="/src/assets/explanatoryImages/addProductAdmin.png"> 
 
 
 
