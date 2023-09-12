@@ -68,7 +68,7 @@ password change- generated token would be sent on a typed email address if a cus
 <img src="/src/assets/explanatoryImages/passwordChange.png"> 
 
 shop products 
-<img src="/src/assets/explanatoryImages/shop.png"> 
+<img src="/src/assets/explanatoryImages/shopNew.png"> 
 
 filter and search
 <img src="/src/assets/explanatoryImages/filterAndSearch.png"> 
@@ -83,7 +83,7 @@ edit products admin
 <img src="/src/assets/explanatoryImages/editProductsAdmin.png"> 
 
 edit and delete product admin- hover on product
-<img src="/src/assets/explanatoryImages/editItemAdmin.png"> 
+<img src="/src/assets/explanatoryImages/editProductsNew.png"> 
 
 add product admin
 <img src="/efashionAngular/src/assets/explanatoryImages/addProductAdmin.png"> 
